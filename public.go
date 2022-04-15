@@ -7,11 +7,11 @@ import (
 	gonet "net"
 	"os"
 
-	"github.com/drand/drand/chain"
-	"github.com/drand/drand/client"
-	"github.com/drand/drand/client/grpc"
-	"github.com/drand/drand/core"
-	"github.com/drand/drand/net"
+	"github.com/Giordyfish/drand/chain"
+	"github.com/Giordyfish/drand/client"
+	"github.com/Giordyfish/drand/client/grpc"
+	"github.com/Giordyfish/drand/core"
+	"github.com/Giordyfish/drand/net"
 	"github.com/urfave/cli/v2"
 )
 

@@ -8,12 +8,12 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/Giordyfish/drand/chain"
+	"github.com/Giordyfish/drand/core"
+	"github.com/Giordyfish/drand/key"
+	"github.com/Giordyfish/drand/net"
+	control "github.com/Giordyfish/drand/protobuf/drand"
 	"github.com/briandowns/spinner"
-	"github.com/drand/drand/chain"
-	"github.com/drand/drand/core"
-	"github.com/drand/drand/key"
-	"github.com/drand/drand/net"
-	control "github.com/drand/drand/protobuf/drand"
 
 	json "github.com/nikkolasg/hexjson"
 	"github.com/urfave/cli/v2"

@@ -20,14 +20,14 @@ import (
 	gonet "net"
 
 	"github.com/BurntSushi/toml"
-	"github.com/drand/drand/chain/boltdb"
-	"github.com/drand/drand/core"
-	"github.com/drand/drand/fs"
-	"github.com/drand/drand/key"
-	"github.com/drand/drand/log"
-	"github.com/drand/drand/net"
-	"github.com/drand/drand/protobuf/drand"
-	"github.com/iotaledger/goshimmer/client"
+	"github.com/Giordyfish/drand/chain/boltdb"
+	"github.com/Giordyfish/drand/core"
+	"github.com/Giordyfish/drand/fs"
+	"github.com/Giordyfish/drand/key"
+	"github.com/Giordyfish/drand/log"
+	"github.com/Giordyfish/drand/net"
+	"github.com/Giordyfish/drand/protobuf/drand"
+	"github.com/Giordyfish/goshimmer/client"
 	"github.com/urfave/cli/v2"
 )
 

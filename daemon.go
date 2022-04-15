@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/drand/drand/core"
-	"github.com/drand/drand/key"
-	"github.com/drand/drand/metrics"
-	"github.com/drand/drand/metrics/pprof"
+	"github.com/Giordyfish/drand/core"
+	"github.com/Giordyfish/drand/key"
+	"github.com/Giordyfish/drand/metrics"
+	"github.com/Giordyfish/drand/metrics/pprof"
 	"github.com/urfave/cli/v2"
 )
 

@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/drand/drand/chain"
-	"github.com/drand/drand/net"
-	"github.com/iotaledger/goshimmer/client"
-	"github.com/iotaledger/goshimmer/packages/drng"
+	"github.com/Giordyfish/drand/chain"
+	"github.com/Giordyfish/drand/net"
+	"github.com/Giordyfish/goshimmer/client"
+	"github.com/Giordyfish/goshimmer/packages/drng"
 	"github.com/urfave/cli/v2"
 )
 
