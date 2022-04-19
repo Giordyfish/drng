@@ -12,7 +12,7 @@ services:
       - "8800:8081/tcp"
     environment:
       LEADER: 1
-      GOSHIMMER: "127.0.0.1:8080"
+      GOSHIMMER: "http://127.0.0.1:8080"
   drand-client-2:
     container_name: drand2
     image: angelocapossele/drand:1.1.3
@@ -23,7 +23,7 @@ services:
       - "8001:8000/tcp"
       - "8801:8081/tcp"
     environment:
-      GOSHIMMER: "127.0.0.1:8080"
+      GOSHIMMER: "http://127.0.0.1:8080"
   drand-client-3:
     container_name: drand3
     image: angelocapossele/drand:1.1.3
@@ -34,7 +34,7 @@ services:
       - "8002:8000/tcp"
       - "8802:8081/tcp"
     environment:
-      GOSHIMMER: "127.0.0.1:8080"
+      GOSHIMMER: "http://127.0.0.1:8080"
   drand-client-4:
     container_name: drand4
     image: angelocapossele/drand:1.1.3
@@ -45,7 +45,7 @@ services:
       - "8003:8000/tcp"
       - "8803:8081/tcp"
     environment:
-      GOSHIMMER: "127.0.0.1:8080"
+      GOSHIMMER: "http://127.0.0.1:8080"
   drand-client-5:
     container_name: drand5
     image: angelocapossele/drand:1.1.3
@@ -56,7 +56,7 @@ services:
       - "8004:8000/tcp"
       - "8804:8081/tcp"
     environment:
-      GOSHIMMER: "127.0.0.1:8080"
+      GOSHIMMER: "http://127.0.0.1:8080"
 
 networks:
   drandnetwork:

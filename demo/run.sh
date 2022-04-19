@@ -13,7 +13,6 @@ docker-compose up -d
 
 COLLECTIVE_PUB_KEY=""
 
-docker stop -t 60 peer_master
 
 while [ -z "$COLLECTIVE_PUB_KEY" ]
 do
