@@ -4,7 +4,7 @@ services:
   drand-client-1:
     container_name: testdrng-drand_0
     image: giordyfish/drand:latest
-    entrypoint: /data/client-script.sh
+    entrypoint: go/drng/demo/data/client-script.sh
     networks:
       - drandnetwork
     ports:
@@ -16,7 +16,7 @@ services:
   drand-client-2:
     container_name: drand2
     image: giordyfish/drand:latest
-    entrypoint: /data/client-script.sh
+    entrypoint: go/drng/demo/data/client-script.sh
     networks:
       - drandnetwork
     ports:
@@ -27,7 +27,7 @@ services:
   drand-client-3:
     container_name: drand3
     image: giordyfish/drand:latest
-    entrypoint: /data/client-script.sh
+    entrypoint: go/drng/demo/data/client-script.sh
     networks:
       - drandnetwork
     ports:
@@ -38,7 +38,7 @@ services:
   drand-client-4:
     container_name: drand4
     image: giordyfish/drand:latest
-    entrypoint: /data/client-script.sh
+    entrypoint: go/drng/demo/data/client-script.sh
     networks:
       - drandnetwork
     ports:
@@ -49,7 +49,7 @@ services:
   drand-client-5:
     container_name: drand5
     image: giordyfish/drand:latest
-    entrypoint: /data/client-script.sh
+    entrypoint: go/drng/demo/data/client-script.sh
     networks:
       - drandnetwork
     ports:
