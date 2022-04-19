@@ -3,7 +3,7 @@ version: "3"
 services:
   drand-client-1:
     container_name: testdrng-drand_0
-    image: angelocapossele/drand:1.1.3
+    image: giordyfish/drand:latest
     entrypoint: /data/client-script.sh
     networks:
       - drandnetwork
@@ -15,7 +15,7 @@ services:
       GOSHIMMER: "http://34.159.203.192:8080"
   drand-client-2:
     container_name: drand2
-    image: angelocapossele/drand:1.1.3
+    image: giordyfish/drand:latest
     entrypoint: /data/client-script.sh
     networks:
       - drandnetwork
@@ -26,7 +26,7 @@ services:
       GOSHIMMER: "http://34.159.203.192:8080"
   drand-client-3:
     container_name: drand3
-    image: angelocapossele/drand:1.1.3
+    image: giordyfish/drand:latest
     entrypoint: /data/client-script.sh
     networks:
       - drandnetwork
@@ -37,7 +37,7 @@ services:
       GOSHIMMER: "http://34.159.203.192:8080"
   drand-client-4:
     container_name: drand4
-    image: angelocapossele/drand:1.1.3
+    image: giordyfish/drand:latest
     entrypoint: /data/client-script.sh
     networks:
       - drandnetwork
@@ -48,7 +48,7 @@ services:
       GOSHIMMER: "http://34.159.203.192:8080"
   drand-client-5:
     container_name: drand5
-    image: angelocapossele/drand:1.1.3
+    image: giordyfish/drand:latest
     entrypoint: /data/client-script.sh
     networks:
       - drandnetwork

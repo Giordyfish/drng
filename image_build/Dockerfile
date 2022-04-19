@@ -1,10 +1,11 @@
-FROM golang:1.18
+FROM golang:alpine
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt upgrade -y
-RUN apt-get install git
+RUN apk update
+RUN apk add git
 RUN git clone https://github.com/Giordyfish/drng
 WORKDIR /go/drng
 RUN go mod vendor
 RUN go install
+ENTRYPOINT ["/go/drng/demo/data/client-script.sh"]
