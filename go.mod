@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/Giordyfish/drand v1.1.3
-	github.com/Giordyfish/goshimmer v0.8.14
+	github.com/Giordyfish/goshimmer v0.8.15
 	github.com/briandowns/spinner v1.11.1
 	github.com/drand/kyber v1.1.10
 	github.com/kabukky/httpscerts v0.0.0-20150320125433-617593d7dcb3
@@ -160,46 +160,27 @@ require (
 )
 
 require (
-	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
 	github.com/benbjohnson/clock v1.1.0 // indirect
 	github.com/cheekybits/genny v1.0.0 // indirect
 	github.com/containerd/cgroups v0.0.0-20201119153540-4cbc285b3327 // indirect
 	github.com/coreos/go-systemd/v22 v22.1.0 // indirect
 	github.com/dgraph-io/ristretto v0.0.3 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/dgryski/go-farm v0.0.0-20200201041132-a6ae2369ad13 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/elastic/gosigar v0.12.0 // indirect
 	github.com/francoispqt/gojay v1.2.13 // indirect
-	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.7.0 // indirect
-	github.com/go-ole/go-ole v1.2.4 // indirect
-	github.com/go-playground/locales v0.13.0 // indirect
-	github.com/go-playground/universal-translator v0.17.0 // indirect
-	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect
-	github.com/gobuffalo/here v0.6.0 // indirect
 	github.com/godbus/dbus/v5 v5.0.3 // indirect
-	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
-	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
-	github.com/labstack/echo v3.3.10+incompatible // indirect
-	github.com/labstack/gommon v0.3.0 // indirect
-	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/libp2p/go-cidranger v1.1.0 // indirect
 	github.com/libp2p/go-libp2p-asn-util v0.1.0 // indirect
 	github.com/libp2p/go-libp2p-quic-transport v0.16.1 // indirect
 	github.com/libp2p/go-libp2p-resource-manager v0.2.0 // indirect
 	github.com/lucas-clemente/quic-go v0.25.0 // indirect
-	github.com/markbates/pkger v0.17.1 // indirect
 	github.com/marten-seemann/qtls-go1-16 v0.1.4 // indirect
 	github.com/marten-seemann/qtls-go1-17 v0.1.0 // indirect
 	github.com/marten-seemann/qtls-go1-18 v0.1.0-beta.1 // indirect
 	github.com/mattn/go-colorable v0.1.7 // indirect
-	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/onsi/ginkgo v1.16.4 // indirect
 	github.com/opencontainers/runtime-spec v1.0.2 // indirect
@@ -207,18 +188,8 @@ require (
 	github.com/pelletier/go-toml v1.8.0 // indirect
 	github.com/raulk/clock v1.1.0 // indirect
 	github.com/raulk/go-watchdog v1.2.0 // indirect
-	github.com/sergi/go-diff v1.1.0 // indirect
-	github.com/shirou/gopsutil v2.20.5+incompatible // indirect
-	github.com/src-d/gcfg v1.4.0 // indirect
-	github.com/ugorji/go/codec v1.1.7 // indirect
-	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.0 // indirect
-	github.com/xanzy/ssh-agent v0.2.1 // indirect
-	go.uber.org/dig v1.13.0 // indirect
 	golang.org/x/mod v0.4.2 // indirect
 	golang.org/x/tools v0.1.5 // indirect
-	gopkg.in/src-d/go-billy.v4 v4.3.2 // indirect
-	gopkg.in/src-d/go-git.v4 v4.13.1 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
-	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
