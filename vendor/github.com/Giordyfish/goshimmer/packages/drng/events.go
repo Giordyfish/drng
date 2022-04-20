@@ -21,6 +21,8 @@ type CollectiveBeaconEvent struct {
 	PrevSignature []byte
 	// Collective signature of the current beacon.
 	Signature []byte
+	// Message.
+	Message []byte
 	// The distributed public key.
 	Dpk []byte
 }

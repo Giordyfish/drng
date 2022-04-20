@@ -43,6 +43,8 @@ type Options struct {
 	Committee *Committee
 	// The initial randomness of the DRNG.
 	Randomness *Randomness
+	// The initial message of the DRNG.
+	Message *Message
 }
 
 // Option is a function which sets the given option.
@@ -60,6 +62,16 @@ func SetRandomness(r *Randomness) Option {
 	return func(args *Options) {
 		args.Randomness = r
 	}
+}
+
+// Message is the message GP
+type Message struct {
+	// Round holds the current DRNG round.
+	Round uint64
+	// Message hpòds the message.
+	Message []byte
+	// Timestamp holds the timestamp of the current randomness message
+	Timestamp time.Time
 }
 
 // Randomness defines the current randomness state of a DRNG instance.
@@ -93,6 +105,7 @@ type Committee struct {
 type State struct {
 	randomness *Randomness
 	committee  *Committee
+	message    *Message
 
 	mutex sync.RWMutex
 }
@@ -107,7 +120,25 @@ func NewState(setters ...Option) *State {
 	return &State{
 		randomness: args.Randomness,
 		committee:  args.Committee,
+		message:    args.Message,
 	}
+}
+
+// UpdateMessage updates the message of the DRNG state
+func (s *State) UpdateMessage(m *Message) {
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
+	s.message = m
+}
+
+// Message returns the message of the DRNG state
+func (s *State) Message() Message {
+	s.mutex.RLock()
+	defer s.mutex.RUnlock()
+	if s.message == nil {
+		return Message{}
+	}
+	return *s.message
 }
 
 // UpdateRandomness updates the randomness of the DRNG state

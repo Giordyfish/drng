@@ -43,13 +43,22 @@ func ProcessBeacon(state *State, cb *CollectiveBeaconEvent) error {
 		// TODO: handle error
 		return err
 	}
+	message := cb.Message
+
 	newRandomness := &Randomness{
 		Round:      cb.Round,
 		Randomness: randomness,
 		Timestamp:  cb.Timestamp,
 	}
 
+	newMessage := &Message{
+		Round:     cb.Round,
+		Message:   message,
+		Timestamp: cb.Timestamp,
+	}
+
 	state.UpdateRandomness(newRandomness)
+	state.UpdateMessage(newMessage)
 
 	return nil
 }
@@ -106,7 +115,7 @@ func verifySignature(cb *CollectiveBeaconEvent) error {
 		return err
 	}
 
-	msg := chain.Message(cb.Round, cb.PrevSignature)
+	msg := chain.Message(cb.Round, cb.PrevSignature, cb.Message)
 
 	if err := key.Scheme.VerifyRecovered(dpk, msg, cb.Signature); err != nil {
 		return err
