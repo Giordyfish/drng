@@ -48,6 +48,7 @@ func beaconCallback(b *chain.Beacon) {
 		b.Round,
 		b.PreviousSig,
 		b.Signature,
+		b.Message,
 		coKey)
 
 	go func() {

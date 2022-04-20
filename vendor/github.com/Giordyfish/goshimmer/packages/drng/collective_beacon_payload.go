@@ -21,6 +21,8 @@ type CollectiveBeaconPayload struct {
 	PrevSignature []byte
 	// Collective signature of the current beacon
 	Signature []byte
+	// The message
+	Message []byte
 	// The distributed public key
 	Dpk []byte
 
@@ -29,12 +31,13 @@ type CollectiveBeaconPayload struct {
 }
 
 // NewCollectiveBeaconPayload creates a new collective beacon payload.
-func NewCollectiveBeaconPayload(instanceID uint32, round uint64, prevSignature, signature, dpk []byte) *CollectiveBeaconPayload {
+func NewCollectiveBeaconPayload(instanceID uint32, round uint64, prevSignature, signature, message, dpk []byte) *CollectiveBeaconPayload {
 	return &CollectiveBeaconPayload{
 		Header:        NewHeader(TypeCollectiveBeacon, instanceID),
 		Round:         round,
 		PrevSignature: prevSignature,
 		Signature:     signature,
+		Message:       message,
 		Dpk:           dpk,
 	}
 }
