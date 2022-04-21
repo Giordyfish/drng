@@ -1,3 +1,7 @@
+# filippo.io/edwards25519 v1.0.0-rc.1
+## explicit; go 1.17
+filippo.io/edwards25519
+filippo.io/edwards25519/field
 # github.com/BurntSushi/toml v0.3.1
 ## explicit
 github.com/BurntSushi/toml
@@ -285,6 +289,7 @@ github.com/iotaledger/hive.go/marshalutil
 github.com/iotaledger/hive.go/objectstorage
 github.com/iotaledger/hive.go/platform
 github.com/iotaledger/hive.go/reflect
+github.com/iotaledger/hive.go/serializer
 github.com/iotaledger/hive.go/stringify
 github.com/iotaledger/hive.go/syncutils
 github.com/iotaledger/hive.go/timedexecutor
@@ -293,6 +298,23 @@ github.com/iotaledger/hive.go/timeutil
 github.com/iotaledger/hive.go/types
 github.com/iotaledger/hive.go/typeutils
 github.com/iotaledger/hive.go/workerpool
+# github.com/iotaledger/iota.go v1.0.0
+## explicit; go 1.13
+github.com/iotaledger/iota.go/consts
+github.com/iotaledger/iota.go/curl
+github.com/iotaledger/iota.go/curl/bct
+github.com/iotaledger/iota.go/encoding/b1t6
+github.com/iotaledger/iota.go/math
+github.com/iotaledger/iota.go/signing/utils
+github.com/iotaledger/iota.go/trinary
+# github.com/iotaledger/iota.go/v2 v2.0.1
+## explicit; go 1.16
+github.com/iotaledger/iota.go/v2
+github.com/iotaledger/iota.go/v2/bech32
+github.com/iotaledger/iota.go/v2/bech32/internal/base32
+github.com/iotaledger/iota.go/v2/ed25519
+github.com/iotaledger/iota.go/v2/pow
+github.com/iotaledger/iota.go/v2/remotesigner
 # github.com/ipfs/go-cid v0.0.7
 ## explicit; go 1.13
 github.com/ipfs/go-cid

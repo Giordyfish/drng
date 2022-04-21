@@ -1,13 +1,17 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"net/http"
 
 	"github.com/Giordyfish/drand/chain"
 	"github.com/Giordyfish/drand/net"
 	"github.com/Giordyfish/goshimmer/client"
 	"github.com/Giordyfish/goshimmer/packages/drng"
 	"github.com/urfave/cli/v2"
+
+	iotago "github.com/iotaledger/iota.go/v2"
 )
 
 var (
@@ -16,6 +20,8 @@ var (
 
 	dRNGInstance = uint32(1)
 )
+
+var ChrysalisAPIClient = iotago.NewNodeHTTPAPIClient("https://teleconsys:tcs001@iota-p1.teleconsys.it")
 
 var goshimmerAPIurl = &cli.StringFlag{
 	Name:  "goshimmerAPIurl",
@@ -43,6 +49,7 @@ func beaconCallback(b *chain.Beacon) {
 		fmt.Println("Error writing on the Tangle: ", err.Error())
 		return
 	}
+
 	cb := drng.NewCollectiveBeaconPayload(
 		dRNGInstance,
 		b.Round,
@@ -50,6 +57,17 @@ func beaconCallback(b *chain.Beacon) {
 		b.Signature,
 		b.Message,
 		coKey)
+
+	//
+	go func() {
+		msgIDChrs, err := SubmitPayloadToChrysalis(context.Background(), ChrysalisAPIClient, cb.Bytes())
+		if err != nil {
+			fmt.Println("Error writing on Chrysalis Tangle: ", err.Error())
+			return
+		}
+		fmt.Printf("Message written on Chrysalis Tangle, msgID %x", msgIDChrs)
+	}()
+	//
 
 	go func() {
 		msgId, err := api.BroadcastCollectiveBeacon(cb.Bytes())
@@ -59,4 +77,25 @@ func beaconCallback(b *chain.Beacon) {
 		}
 		fmt.Println("Beacon written on the Tangle with msgID: ", msgId)
 	}()
+}
+
+func SubmitPayloadToChrysalis(ctx context.Context, api *iotago.NodeHTTPAPIClient, p []byte) ([]byte, error) {
+	// Do not check the message because the validation would fail if
+	// no parents were given. The node will first add this missing information and
+	// validate the message afterwards.
+
+	req := &iotago.RawDataEnvelope{Data: p}
+	res, err := api.Do(ctx, http.MethodPost, iotago.NodeAPIRouteMessages, req, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	messageID, err := iotago.MessageIDFromHexString(res.Header.Get("Location"))
+	if err != nil {
+		return nil, err
+	}
+
+	msgIDBytes := messageID[:]
+
+	return msgIDBytes, nil
 }

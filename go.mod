@@ -8,6 +8,7 @@ require (
 	github.com/Giordyfish/goshimmer v0.8.15
 	github.com/briandowns/spinner v1.11.1
 	github.com/drand/kyber v1.1.10
+	github.com/iotaledger/iota.go/v2 v2.0.1
 	github.com/kabukky/httpscerts v0.0.0-20150320125433-617593d7dcb3
 	github.com/nikkolasg/hexjson v0.0.0-20181101101858-78e39397e00c
 	github.com/stretchr/testify v1.7.0
@@ -160,6 +161,7 @@ require (
 )
 
 require (
+	filippo.io/edwards25519 v1.0.0-rc.1 // indirect
 	github.com/benbjohnson/clock v1.1.0 // indirect
 	github.com/cheekybits/genny v1.0.0 // indirect
 	github.com/containerd/cgroups v0.0.0-20201119153540-4cbc285b3327 // indirect
@@ -171,6 +173,7 @@ require (
 	github.com/francoispqt/gojay v1.2.13 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect
 	github.com/godbus/dbus/v5 v5.0.3 // indirect
+	github.com/iotaledger/iota.go v1.0.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/libp2p/go-cidranger v1.1.0 // indirect
 	github.com/libp2p/go-libp2p-asn-util v0.1.0 // indirect
