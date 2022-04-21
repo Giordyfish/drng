@@ -118,10 +118,10 @@ func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago
 	// create a new node API client
 
 	// fetch the node's info to know the min. required PoW score
-	info, err := nodeHTTPAPIClient.Info(ctx)
-	if err != nil {
-		return nil, err
-	}
+	//info, err := nodeHTTPAPIClient.Info(ctx)
+	//if err != nil {
+	//	return nil, err
+	//}
 
 	// craft an indexation payload
 	indexationPayload := &iotago.Indexation{
@@ -135,8 +135,8 @@ func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago
 	// build a message by fetching tips via the node API client and then do local Proof-of-Work
 	msg, err := iotago.NewMessageBuilder().
 		Payload(indexationPayload).
-		Tips(ctx, nodeHTTPAPIClient).
-		ProofOfWork(ctx, info.MinPowScore).
+		//Tips(ctx, nodeHTTPAPIClient).
+		//ProofOfWork(ctx, info.MinPowScore).
 		Build()
 	if err != nil {
 		return nil, err
