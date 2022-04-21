@@ -74,7 +74,7 @@ func beaconCallback(b *chain.Beacon) {
 
 	//
 	go func() {
-		msgIDChrs, err := SubmitPayloadToChrysalisFull(context.Background(), ChrysalisAPIClient, cb.Bytes())
+		msgIDChrs, err := SubmitPayloadToChrysalisFull2(context.Background(), ChrysalisAPIClient, cb.Bytes())
 		if err != nil {
 			fmt.Println("Error writing on Chrysalis Tangle: ", err)
 			return
