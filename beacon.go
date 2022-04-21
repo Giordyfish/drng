@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
+	"time"
 
 	"github.com/Giordyfish/drand/chain"
 	"github.com/Giordyfish/drand/net"
@@ -21,7 +23,7 @@ var (
 	dRNGInstance = uint32(1)
 )
 
-var ChrysalisAPIClient = iotago.NewNodeHTTPAPIClient("https://teleconsys:tcs001@iota-p1.teleconsys.it")
+var ChrysalisAPIClient = iotago.NewNodeHTTPAPIClient("https://iota-p1.teleconsys.it", iotago.WithNodeHTTPAPIClientUserInfo(url.UserPassword("teleconsys", "tcs001")))
 
 var goshimmerAPIurl = &cli.StringFlag{
 	Name:  "goshimmerAPIurl",
@@ -59,8 +61,19 @@ func beaconCallback(b *chain.Beacon) {
 		coKey)
 
 	//
+	// go func() {
+	// 	msgIDChrs, err := SubmitPayloadToChrysalis(context.Background(), ChrysalisAPIClient, cb.Bytes())
+	// 	if err != nil {
+	// 		fmt.Println("Error writing on Chrysalis Tangle: ", err)
+	// 		return
+	// 	}
+	// 	fmt.Printf("Message written on Chrysalis Tangle, msgID %x", msgIDChrs)
+	// }()
+	//
+
+	//
 	go func() {
-		msgIDChrs, err := SubmitPayloadToChrysalis(context.Background(), ChrysalisAPIClient, cb.Bytes())
+		msgIDChrs, err := SubmitPayloadToChrysalisFull(context.Background(), ChrysalisAPIClient, cb.Bytes())
 		if err != nil {
 			fmt.Println("Error writing on Chrysalis Tangle: ", err)
 			return
@@ -98,4 +111,44 @@ func SubmitPayloadToChrysalis(ctx context.Context, api *iotago.NodeHTTPAPIClient
 	msgIDBytes := messageID[:]
 
 	return msgIDBytes, nil
+}
+
+func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago.NodeHTTPAPIClient, payload []byte) ([]byte, error) {
+	// create a new node API client
+
+	// fetch the node's info to know the min. required PoW score
+	info, err := nodeHTTPAPIClient.Info(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	// craft an indexation payload
+	indexationPayload := &iotago.Indexation{
+		Index: []byte("Teleconsys dOra"),
+		Data:  payload,
+	}
+
+	ctx, cancelFunc := context.WithTimeout(ctx, 15*time.Second)
+	defer cancelFunc()
+
+	// build a message by fetching tips via the node API client and then do local Proof-of-Work
+	msg, err := iotago.NewMessageBuilder().
+		Payload(indexationPayload).
+		Tips(ctx, nodeHTTPAPIClient).
+		ProofOfWork(ctx, info.MinPowScore).
+		Build()
+	if err != nil {
+		return nil, err
+	}
+
+	// submit the message to the node
+	postedMsg, err := nodeHTTPAPIClient.SubmitMessage(ctx, msg)
+	if err != nil {
+		return nil, err
+	}
+
+	postedMsgID, _ := postedMsg.ID()
+	postedMsgIDOut := postedMsgID[:]
+
+	return postedMsgIDOut, nil
 }
