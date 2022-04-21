@@ -74,12 +74,12 @@ func beaconCallback(b *chain.Beacon) {
 
 	//
 	go func() {
-		msgIDChrs, err := SubmitPayloadToChrysalisFull(context.Background(), ChrysalisAPIClient, cb.Bytes())
+		msgIDChrs, err := SubmitPayloadToChrysalisFull(context.Background(), ChrysalisAPIClient, cb)
 		if err != nil {
 			fmt.Println("Error writing on Chrysalis Tangle: ", err)
 			return
 		}
-		fmt.Printf("Message written on Chrysalis Tangle, msgID %x", msgIDChrs)
+		fmt.Printf("\nMessage written on Chrysalis Tangle, msgID %x", msgIDChrs)
 	}()
 	//
 
@@ -93,12 +93,12 @@ func beaconCallback(b *chain.Beacon) {
 	}()
 }
 
-func SubmitPayloadToChrysalis(ctx context.Context, api *iotago.NodeHTTPAPIClient, p []byte) ([]byte, error) {
+func SubmitPayloadToChrysalis(ctx context.Context, api *iotago.NodeHTTPAPIClient, p *drng.CollectiveBeaconPayload) ([]byte, error) {
 	// Do not check the message because the validation would fail if
 	// no parents were given. The node will first add this missing information and
 	// validate the message afterwards.
 
-	req := &iotago.RawDataEnvelope{Data: p}
+	req := &iotago.RawDataEnvelope{Data: []byte(p.String())}
 	res, err := api.Do(ctx, http.MethodPost, iotago.NodeAPIRouteMessages, req, nil)
 	if err != nil {
 		return nil, err
@@ -114,7 +114,7 @@ func SubmitPayloadToChrysalis(ctx context.Context, api *iotago.NodeHTTPAPIClient
 	return msgIDBytes, nil
 }
 
-func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago.NodeHTTPAPIClient, payload []byte) ([]byte, error) {
+func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago.NodeHTTPAPIClient, payload *drng.CollectiveBeaconPayload) ([]byte, error) {
 	// create a new node API client
 
 	// fetch the node's info to know the min. required PoW score
@@ -126,7 +126,7 @@ func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago
 	// craft an indexation payload
 	indexationPayload := &iotago.Indexation{
 		Index: []byte("Teleconsys dOra"),
-		Data:  payload,
+		Data:  []byte(payload.String()),
 	}
 
 	//ctx, cancelFunc := context.WithTimeout(ctx, 15*time.Second)
@@ -154,12 +154,12 @@ func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago
 	return postedMsgIDOut, nil
 }
 
-func SubmitPayloadToChrysalisFull2(ctx context.Context, nodeHTTPAPIClient *iotago.NodeHTTPAPIClient, payload []byte) ([]byte, error) {
+func SubmitPayloadToChrysalisFull2(ctx context.Context, nodeHTTPAPIClient *iotago.NodeHTTPAPIClient, payload *drng.CollectiveBeaconPayload) ([]byte, error) {
 
 	// craft an indexation payload
 	indexationPayload := &iotago.Indexation{
 		Index: []byte("Teleconsys dOra"),
-		Data:  payload,
+		Data:  []byte(payload.String()),
 	}
 
 	data, err := indexationPayload.Serialize(serializer.DeSeriModeNoValidation)
