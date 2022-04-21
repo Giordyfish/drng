@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"net/url"
 
 	"github.com/Giordyfish/drand/chain"
 	"github.com/Giordyfish/drand/net"
@@ -24,7 +23,8 @@ var (
 	dRNGInstance = uint32(1)
 )
 
-var ChrysalisAPIClient = iotago.NewNodeHTTPAPIClient("https://iota-p1.teleconsys.it", iotago.WithNodeHTTPAPIClientUserInfo(url.UserPassword("teleconsys", "tcs001")))
+//var ChrysalisAPIClient = iotago.NewNodeHTTPAPIClient("https://iota-p1.teleconsys.it", iotago.WithNodeHTTPAPIClientUserInfo(url.UserPassword("teleconsys", "tcs001")))
+var ChrysalisAPIClient = iotago.NewNodeHTTPAPIClient("https://chrysalis-nodes.iota.org")
 
 var goshimmerAPIurl = &cli.StringFlag{
 	Name:  "goshimmerAPIurl",
@@ -74,7 +74,7 @@ func beaconCallback(b *chain.Beacon) {
 
 	//
 	go func() {
-		msgIDChrs, err := SubmitPayloadToChrysalisFull2(context.Background(), ChrysalisAPIClient, cb.Bytes())
+		msgIDChrs, err := SubmitPayloadToChrysalisFull(context.Background(), ChrysalisAPIClient, cb.Bytes())
 		if err != nil {
 			fmt.Println("Error writing on Chrysalis Tangle: ", err)
 			return
@@ -118,10 +118,10 @@ func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago
 	// create a new node API client
 
 	// fetch the node's info to know the min. required PoW score
-	//info, err := nodeHTTPAPIClient.Info(ctx)
-	//if err != nil {
-	//	return nil, err
-	//}
+	info, err := nodeHTTPAPIClient.Info(ctx)
+	if err != nil {
+		return nil, err
+	}
 
 	// craft an indexation payload
 	indexationPayload := &iotago.Indexation{
@@ -135,8 +135,8 @@ func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago
 	// build a message by fetching tips via the node API client and then do local Proof-of-Work
 	msg, err := iotago.NewMessageBuilder().
 		Payload(indexationPayload).
-		//	Tips(ctx, nodeHTTPAPIClient).
-		//	ProofOfWork(ctx, info.MinPowScore).
+		Tips(ctx, nodeHTTPAPIClient).
+		ProofOfWork(ctx, info.MinPowScore).
 		Build()
 	if err != nil {
 		return nil, err
