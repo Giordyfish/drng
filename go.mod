@@ -50,7 +50,7 @@ require (
 	github.com/hashicorp/go-multierror v1.1.0 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/huin/goupnp v1.0.2 // indirect
-	github.com/iotaledger/hive.go v0.0.0-20220323102937-0cf57aabb23a // indirect
+	github.com/iotaledger/hive.go v0.0.0-20220323102937-0cf57aabb23a
 	github.com/ipfs/go-cid v0.0.7 // indirect
 	github.com/ipfs/go-ipfs-util v0.0.2 // indirect
 	github.com/ipfs/go-log/v2 v2.5.0 // indirect

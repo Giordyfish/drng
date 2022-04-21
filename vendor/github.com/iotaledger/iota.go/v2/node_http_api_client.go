@@ -7,14 +7,13 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/iotaledger/hive.go/serializer"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
-
-	"github.com/iotaledger/hive.go/serializer"
 )
 
 var (

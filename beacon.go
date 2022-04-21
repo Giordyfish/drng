@@ -12,6 +12,8 @@ import (
 	"github.com/Giordyfish/goshimmer/packages/drng"
 	"github.com/urfave/cli/v2"
 
+	"github.com/iotaledger/hive.go/serializer"
+
 	iotago "github.com/iotaledger/iota.go/v2"
 )
 
@@ -150,4 +152,34 @@ func SubmitPayloadToChrysalisFull(ctx context.Context, nodeHTTPAPIClient *iotago
 	postedMsgIDOut := postedMsgID[:]
 
 	return postedMsgIDOut, nil
+}
+
+func SubmitPayloadToChrysalisFull2(ctx context.Context, nodeHTTPAPIClient *iotago.NodeHTTPAPIClient, payload []byte) ([]byte, error) {
+
+	// craft an indexation payload
+	indexationPayload := &iotago.Indexation{
+		Index: []byte("Teleconsys dOra"),
+		Data:  payload,
+	}
+
+	data, err := indexationPayload.Serialize(serializer.DeSeriModeNoValidation)
+	if err != nil {
+		return nil, err
+	}
+
+	req := &iotago.RawDataEnvelope{Data: data}
+
+	res, err := nodeHTTPAPIClient.Do(ctx, http.MethodPost, iotago.NodeAPIRouteMessages, req, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	messageID, err := iotago.MessageIDFromHexString(res.Header.Get("Location"))
+	if err != nil {
+		return nil, err
+	}
+
+	MsgIDOut := messageID[:]
+
+	return MsgIDOut, nil
 }
