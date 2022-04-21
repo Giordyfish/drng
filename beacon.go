@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 
@@ -170,6 +171,9 @@ func SubmitPayloadToChrysalisFull2(ctx context.Context, nodeHTTPAPIClient *iotag
 	req := &iotago.RawDataEnvelope{Data: data}
 
 	res, err := nodeHTTPAPIClient.Do(ctx, http.MethodPost, iotago.NodeAPIRouteMessages, req, nil)
+	fmt.Println("res is:", res)
+	resall, _ := io.ReadAll(res.Body)
+	fmt.Println("res really is:", string(resall))
 	if err != nil {
 		return nil, err
 	}
