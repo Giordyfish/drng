@@ -5,7 +5,7 @@ filippo.io/edwards25519/field
 # github.com/BurntSushi/toml v0.3.1
 ## explicit
 github.com/BurntSushi/toml
-# github.com/Giordyfish/drand v1.1.4
+# github.com/Giordyfish/drand v1.1.5
 ## explicit; go 1.14
 github.com/Giordyfish/drand/chain
 github.com/Giordyfish/drand/chain/beacon
@@ -24,7 +24,7 @@ github.com/Giordyfish/drand/net
 github.com/Giordyfish/drand/protobuf/crypto/dkg
 github.com/Giordyfish/drand/protobuf/drand
 github.com/Giordyfish/drand/test
-# github.com/Giordyfish/goshimmer v0.8.17
+# github.com/Giordyfish/goshimmer v0.8.18
 ## explicit; go 1.18
 github.com/Giordyfish/goshimmer/client
 github.com/Giordyfish/goshimmer/packages/clock

@@ -4,8 +4,8 @@ go 1.17
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/Giordyfish/drand v1.1.4
-	github.com/Giordyfish/goshimmer v0.8.17
+	github.com/Giordyfish/drand v1.1.5
+	github.com/Giordyfish/goshimmer v0.8.18
 	github.com/briandowns/spinner v1.11.1
 	github.com/drand/kyber v1.1.10
 	github.com/iotaledger/iota.go/v2 v2.0.1
