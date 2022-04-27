@@ -140,6 +140,7 @@ func (p *CollectiveBeaconPayload) Bytes() (bytes []byte) {
 	marshalUtil.WriteUint64(p.Round)
 	marshalUtil.WriteBytes(p.PrevSignature)
 	marshalUtil.WriteBytes(p.Signature)
+	marshalUtil.WriteBytes(p.Message)
 	marshalUtil.WriteBytes(p.Dpk)
 
 	bytes = marshalUtil.Bytes()
@@ -157,6 +158,7 @@ func (p *CollectiveBeaconPayload) String() string {
 		stringify.StructField("round", p.Round),
 		stringify.StructField("prevSignature", p.PrevSignature),
 		stringify.StructField("signature", p.Signature),
+		stringify.StructField("message", p.Message),
 		stringify.StructField("distributedPK", p.Dpk),
 	)
 }
